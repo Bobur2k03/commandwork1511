@@ -1,10 +1,11 @@
 package com.example.command_work_1511;
 
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class AddPasswordActivity extends AppCompatActivity {
 
@@ -33,8 +34,17 @@ public class AddPasswordActivity extends AppCompatActivity {
             String password = passwordEditText.getText().toString();
 
             // Сохраняем новый пароль в базу данных
-            dbHelper.addPassword(title, site, login, password);
-            finish();  // Закрываем текущую активность
+            long id = dbHelper.addPassword(title, site, login, password);
+            if (id != -1) {
+                Log.d("AddPassword", "Пароль успешно добавлен с ID: " + id);
+                Toast.makeText(AddPasswordActivity.this, "Пароль добавлен", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.e("AddPassword", "Ошибка при добавлении пароля");
+                Toast.makeText(AddPasswordActivity.this, "Ошибка при добавлении пароля", Toast.LENGTH_SHORT).show();
+            }
+
+            // Закрываем текущую активность и возвращаемся в PasswordListActivity
+            finish();
         });
     }
 }

@@ -11,4 +11,8 @@
     <string name="set_pin_activity_label">Установка PIN-кода</string>
     <!-- Строка для PasswordListActivity на русском -->
     <string name="password_list_activity_label">Список Паролей</string>
+    <string name="add_password_activity_label">Add Password</string>
+    <string name="enter_pin_activity_label">Введите PIN-код</string>
+    <string name="edit_password_activity_label">Редактирование пароля</string>
+    <string name="password_detail_activity_label">Детали пароля</string>
 </resources>

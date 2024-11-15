@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PasswordListActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
+    private PasswordAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,25 +22,56 @@ public class PasswordListActivity extends AppCompatActivity {
         ListView passwordList = findViewById(R.id.password_list);
         Button addButton = findViewById(R.id.btn_add);
 
-        // Переход к активности добавления пароля
-        addButton.setOnClickListener(v -> {
-            startActivity(new Intent(PasswordListActivity.this, AddPasswordActivity.class));
-        });
-
-        // Получаем все пароли из базы данных
-        Cursor cursor = dbHelper.getAllPasswords();
-
-        // Создаем адаптер с курсором и устанавливаем его для ListView
-        PasswordAdapter adapter = new PasswordAdapter(this, cursor);
+        // Инициализация адаптера
+        adapter = new PasswordAdapter(this, null);
         passwordList.setAdapter(adapter);
 
-        // Реакция на долгий клик для удаления или других действий
-        passwordList.setOnItemLongClickListener((parent, view, position, id) -> {
-            // В данном случае просто выводим название пароля в Toast
-            cursor.moveToPosition(position);  // Переходим к нужной позиции
-            String title = cursor.getString(cursor.getColumnIndex("title"));
-            Toast.makeText(PasswordListActivity.this, "Долгое нажатие на: " + title, Toast.LENGTH_SHORT).show();
-            return true;  // Возвращаем true, чтобы обработать долгий клик
+        // Обновление списка паролей
+        updatePasswordList();
+
+        // Обработка кнопки добавления
+        addButton.setOnClickListener(v -> {
+            Intent intent = new Intent(PasswordListActivity.this, AddPasswordActivity.class);
+            startActivity(intent);
+        });
+
+        // Обработка клика по элементу списка
+        passwordList.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(PasswordListActivity.this, PasswordDetailActivity.class);
+            intent.putExtra("password_id", id); // Передаем ID пароля в новую активность
+            startActivity(intent);
         });
     }
+
+    // Метод для обновления списка паролей
+    private void updatePasswordList() {
+        Cursor cursor = dbHelper.getAllPasswords();
+
+        if (cursor != null && cursor.getCount() > 0) {
+            adapter.changeCursor(cursor); // Обновляем адаптер с новым курсором
+        } else {
+            adapter.changeCursor(null); // Очищаем адаптер, если данных нет
+            Toast.makeText(this, "Нет сохраненных паролей", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updatePasswordList();
+        // Проверка, если нужно показать Toast
+        if (getIntent().getBooleanExtra("password_deleted", false)) {
+            Toast.makeText(this, "Пароль удален", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (adapter != null) {
+            adapter.changeCursor(null); // Закрываем курсор в адаптере
+        }
+    }
+
+
 }

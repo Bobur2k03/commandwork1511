@@ -33,10 +33,38 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 
+        <!-- EditPasswordActivity -->
+        <activity
+            android:name=".EditPasswordActivity"
+            android:label="@string/edit_password_activity_label"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
+        <!-- EnterPinActivity -->
+        <activity
+            android:name=".EnterPinActivity"
+            android:label="@string/enter_pin_activity_label"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
         <!-- PasswordListActivity -->
         <activity
             android:name=".PasswordListActivity"
             android:label="@string/password_list_activity_label"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
+        <!-- AddPasswordActivity -->
+        <activity
+            android:name=".AddPasswordActivity"
+            android:label="@string/add_password_activity_label"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
+        <!-- PasswordDetailActivity (Добавлено) -->
+        <activity
+            android:name=".PasswordDetailActivity"
+            android:label="@string/password_detail_activity_label"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 
