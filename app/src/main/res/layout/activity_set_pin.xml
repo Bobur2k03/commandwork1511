@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_vertical">
+
+    <!-- Ввод нового PIN-кода -->
+    <EditText
+        android:id="@+id/pin_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_new_pin"
+        android:inputType="textPassword"
+        android:maxLength="4"
+        android:autofillHints="newPassword"
+        android:contentDescription="@string/desc_new_pin"
+        android:padding="16dp" />
+
+    <!-- Подтверждение нового PIN-кода -->
+    <EditText
+        android:id="@+id/pin_confirm_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_confirm_pin"
+        android:inputType="textPassword"
+        android:maxLength="4"
+        android:autofillHints="newPassword"
+        android:contentDescription="@string/desc_confirm_pin"
+        android:padding="16dp"/>
+
+    <!-- Кнопка для установки PIN -->
+    <Button
+        android:id="@+id/btn_set_pin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_pin"
+        android:contentDescription="@string/desc_set_pin"
+        android:padding="16dp" />
+
+</LinearLayout>

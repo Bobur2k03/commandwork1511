@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">command-work-15.11</string>
+    <string name="hint_new_pin">Введите новый PIN-код</string>
+    <string name="hint_confirm_pin">Подтвердите новый PIN-код</string>
+    <string name="set_pin">Установить PIN</string>
+
+    <!-- Описание для доступности -->
+    <string name="desc_new_pin">Поле для ввода нового PIN-кода</string>
+    <string name="desc_confirm_pin">Поле для подтверждения нового PIN-кода</string>
+    <string name="desc_set_pin">Кнопка для установки PIN-кода</string>
+    <string name="set_pin_activity_label">Установка PIN-кода</string>
+    <!-- Строка для PasswordListActivity на русском -->
+    <string name="password_list_activity_label">Список Паролей</string>
+</resources>
